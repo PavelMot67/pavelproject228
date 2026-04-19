@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Тест: какой ты ученик</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f5f7ff;
+        text-align: center;
+    }
+
+    header {
+        background: #4a6fa5;
+        color: white;
+        padding: 20px;
+    }
+
+    nav {
+        background: #2f3e5c;
+        padding: 10px;
+    }
+
+    nav a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .block {
+        background: white;
+        padding: 20px;
+        margin: 15px auto;
+        width: 80%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+        margin: 5px;
+        padding: 10px;
+        border: none;
+        background: #4a6fa5;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #2f3e5c;
+    }
+
+    .selected {
+        background: #28a745 !important;
+    }
+
+    #result {
+        font-size: 20px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 Тест: какой ты ученик?</h1>
+</header>
+
+<nav>
+    <a href="index.html">Главная</a>
+    <a href="teachers.html">Учителя</a>
+    <a href="%D1%80%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5.html">Расписание</a>
+    <a href="%D1%82%D0%B5%D1%81%D1%82.html">Тест</a>
+</nav>
+
+<div class="container">
+
+    <div class="block">
+        <h2>Вопрос 1: Ты делаешь домашку?</h2>
+        <button onclick="select(this, 2)">Всегда делаю ДЗ</button>
+        <button onclick="select(this, 1)">Иногда</button>
+        <button onclick="select(this, 0)">Редко</button>
+    </div>
+
+    <div class="block">
+        <h2>Вопрос 2: Твои оценки?</h2>
+        <button onclick="select(this, 2)">Отличные </button>
+        <button onclick="select(this, 1)">Хорошие</button>
+        <button onclick="select(this, 0)">Разные</button>
+    </div>
+
+    <div class="block">
+        <h2>Вопрос 3: Ты активный на уроках?</h2>
+        <button onclick="select(this, 2)">Да, активный</button>
+        <button onclick="select(this, 1)">Иногда</button>
+        <button onclick="select(this, 0)">Нет</button>
+    </div>
+
+    <div class="block">
+        <button onclick="showResult()">Узнать результат</button>
+        <div id="result"></div>
+    </div>
+
+</div>
+
+<script>
+    let score = 0;
+
+    function select(btn, value) {
+        let parent = btn.parentNode;
+        let buttons = parent.getElementsByTagName("button");
+
+        for (let b of buttons) {
+            b.classList.remove("selected");
+        }
+
+        btn.classList.add("selected");
+
+        score += value;
+    }
+
+    function showResult() {
+        let result = "";
+
+        if (score >= 5) {
+            result = "🌟 Ты отличник!";
+        } else if (score >= 3) {
+            result = "📚 Ты хороший ученик!";
+        } else {
+            result = "🎒 Ты можешь учиться лучше!";
+        }
+
+        document.getElementById("result").innerText = result;
+    }
+</script>
+
+</body>
+</html>
